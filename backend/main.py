@@ -13,6 +13,7 @@ app = FastAPI(title="AgentFlow API", version="1.0.0")
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "https://agent-flow-wheat.vercel.app",
 ]
 
 prod_url = os.getenv("FRONTEND_URL")
