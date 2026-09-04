@@ -7,33 +7,57 @@ const config: Config = {
       fontFamily: {
         sans: ['"DM Sans"', "system-ui", "sans-serif"],
         mono: ['"JetBrains Mono"', "monospace"],
+        serif: ['"Tiempos Headline"', 'Georgia', 'serif'],
       },
       colors: {
-        canvas: "#101014",
-        panel: "#18181e",
-        raised: "#222230",
-        subtle: "#2a2a3a",
-        muted: "#71717a",
-        soft: "#a1a1aa",
-        mint: { DEFAULT: "#34d399", dim: "rgba(52,211,153,0.12)" },
-        coral: { DEFAULT: "#fb7185", dim: "rgba(251,113,133,0.12)" },
-        sky: { DEFAULT: "#38bdf8", dim: "rgba(56,189,248,0.10)" },
-        amber: { DEFAULT: "#fbbf24", dim: "rgba(251,191,36,0.12)" },
-        violet: { DEFAULT: "#a78bfa", dim: "rgba(167,139,250,0.12)" },
+        space: {
+          900: "#090E17",
+          800: "#101623",
+          700: "#1A2333",
+        },
+        accent: {
+          cyan: "#00f0ff",
+          cyanHover: "#33f3ff",
+          violet: "#b026ff",
+        },
+        glass: {
+          light: "rgba(255, 255, 255, 0.05)",
+          hover: "rgba(255, 255, 255, 0.08)",
+          cyan: "rgba(0, 240, 255, 0.1)",
+        },
+        text: {
+          primary: "#f8f9fa",
+          secondary: "#94a3b8",
+          muted: "#64748b",
+        }
       },
       animation: {
-        enter: "enter 0.35s ease-out",
-        "slide-in": "slideIn 0.3s ease-out",
-        "pulse-slow": "pulse 3s ease-in-out infinite",
+        "aurora-shift": "aurora-shift 15s ease infinite",
+        "pulse-fast": "pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "float": "float 6s ease-in-out infinite",
       },
       keyframes: {
-        enter: {
-          "0%": { opacity: "0", transform: "translateY(6px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+        "aurora-shift": {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)", opacity: "0.4" },
+          "33%": { transform: "translate(5%, 5%) scale(1.1)", opacity: "0.6" },
+          "66%": { transform: "translate(-5%, -5%) scale(0.9)", opacity: "0.5" },
         },
-        slideIn: {
-          "0%": { opacity: "0", transform: "translateX(12px)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        }
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#f8f9fa',
+            a: {
+              color: '#00f0ff',
+              '&:hover': {
+                color: '#33f3ff',
+              },
+            },
+          },
         },
       },
     },
