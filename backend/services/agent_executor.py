@@ -37,6 +37,7 @@ def run_agent(message: str, conversation_history: list[dict] | None = None) -> d
     # Build chat history
     history = []
     if conversation_history:
+        conversation_history = conversation_history[-6:]
         for msg in conversation_history:
             role = "user" if msg["role"] == "user" else "model"
             history.append({"role": role, "parts": [msg["content"]]})

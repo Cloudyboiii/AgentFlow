@@ -59,6 +59,7 @@ export default function Chat() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [conversationHistory, setConversationHistory] = useState<any[]>([]);
   
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -99,6 +100,7 @@ export default function Chat() {
 
   const handleNewChat = () => {
     setCurrentSessionId(null);
+    setConversationHistory([]);
     if (window.innerWidth < 768) setSidebarOpen(false);
   };
 
@@ -142,6 +144,7 @@ export default function Chat() {
       activeSessions = [newSession, ...activeSessions];
       setSessions(activeSessions);
       setCurrentSessionId(activeId);
+      setConversationHistory([]);
     }
 
     const userMsg: Message = { id: generateId(), role: "user", content: q };
@@ -158,10 +161,7 @@ export default function Chat() {
     setLoading(true);
 
     try {
-      const targetSession = activeSessions.find(s => s.id === activeId);
-      const history = targetSession?.messages.map((m) => ({ role: m.role, content: m.content })) || [];
-      
-      const res = await agentChat(q, history);
+      const res = await agentChat(q, conversationHistory);
 
       const aiMsg: Message = {
         id: generateId(),
@@ -177,6 +177,8 @@ export default function Chat() {
         }
         return s;
       }).sort((a, b) => b.updatedAt - a.updatedAt));
+
+      setConversationHistory(prev => [...prev, {role: "user", content: q}, {role: "ai", content: res.answer}].slice(-6));
 
     } catch (error: any) {
       setSessions(prev => prev.map(s => {
