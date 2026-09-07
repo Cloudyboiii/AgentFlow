@@ -76,6 +76,7 @@ User sends message
 
 ## Project Structure
 
+```text
 AgentFlow/
 ├── backend/
 │ ├── main.py # FastAPI app + CORS
@@ -103,6 +104,7 @@ AgentFlow/
 │ └── globals.css
 └── lib/
 └── api.ts # API client
+```
 
 
 ---
