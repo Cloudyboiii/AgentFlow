@@ -124,8 +124,8 @@ export default function Chat() {
     }
   };
 
-  const handleSend = async () => {
-    const q = input.trim();
+  const handleSend = async (overridePrompt?: string | React.MouseEvent) => {
+    const q = typeof overridePrompt === "string" ? overridePrompt.trim() : input.trim();
     if (!q || loading) return;
 
     let activeId = currentSessionId;
@@ -287,7 +287,7 @@ export default function Chat() {
         <div className="flex-1 overflow-y-auto w-full pt-10 scroll-smooth">
           <div className="max-w-3xl mx-auto pb-64 px-4 md:px-0">
             {messages.length === 0 ? (
-              <div className="flex flex-col items-center justify-center h-[50vh] text-center animate-float">
+              <div className="flex flex-col items-center justify-center min-h-[50vh] text-center animate-float pt-10">
                 <div className="relative flex items-center justify-center mb-6">
                   <div className="absolute inset-0 bg-accent-cyan/20 blur-2xl rounded-full" />
                   <Orbit className="w-16 h-16 text-accent-cyan relative z-10" />
@@ -295,7 +295,27 @@ export default function Chat() {
                 <h1 className="font-serif text-4xl md:text-5xl font-normal text-white tracking-tight mb-2">
                   {getGreeting()}, Badal
                 </h1>
-                <p className="text-text-secondary text-lg">System online and ready for deployment.</p>
+                <p className="text-text-secondary text-lg mb-8">System online and ready for deployment.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl text-left">
+                  {[
+                    { title: "Research Assistant", desc: "Search, read & summarize", prompt: "Search the web for the latest developments in AI agents in 2026, read the top result, and give me a structured summary with key takeaways." },
+                    { title: "Market & Weather Brief", desc: "Live data, multiple sources", prompt: "What is today's date and time? Get the current weather in New York and San Francisco. Give me a combined morning brief." },
+                    { title: "Math + Research", desc: "Calculate and fact-check", prompt: "Search the web for the current population of India and China. Calculate the combined population and what percentage of 8 billion that is." },
+                    { title: "Article Summarizer", desc: "Read a URL and extract insights", prompt: "Read https://en.wikipedia.org/wiki/Artificial_intelligence and summarize the key sections in 5 bullet points." },
+                    { title: "Live News Digest", desc: "Today's top tech stories", prompt: "Search for the top 3 technology news stories from today. For each one give the headline, a 2-sentence summary, and why it matters." },
+                    { title: "Science Calculator", desc: "Multi-step math and science", prompt: "Calculate the speed of light in km/h, then calculate how long it would take light to travel from Earth to Mars at its closest point (54.6 million km). Show your work." }
+                  ].map((card, i) => (
+                    <button 
+                      key={i}
+                      onClick={() => handleSend(card.prompt)}
+                      className="flex flex-col p-4 rounded-xl glass-panel hover:bg-space-800/80 border border-transparent hover:border-accent-cyan/30 transition-all text-left"
+                    >
+                      <span className="text-accent-cyan font-medium text-sm mb-1">{card.title}</span>
+                      <span className="text-text-secondary text-xs">{card.desc}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
             ) : (
               <div className="flex flex-col gap-6">
@@ -380,7 +400,7 @@ export default function Chat() {
                   {messages.length === 0 && (
                     <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-glass-light text-text-secondary text-xs font-mono border border-glass-light">
                       <Zap className="w-3.5 h-3.5 text-accent-cyan" />
-                      AgentFlow <span className="text-accent-violet font-semibold">Nebula</span>
+                      AgentFlow
                     </div>
                   )}
                   
@@ -399,7 +419,7 @@ export default function Chat() {
               </div>
             </div>
             <p className="text-center text-[11px] text-text-muted mt-4">
-              AgentFlow Nebula is an AI system and can make mistakes. Verify critical outputs.
+              AgentFlow is an AI system and can make mistakes. Verify critical outputs.
             </p>
           </div>
         </div>

@@ -23,7 +23,6 @@ def get_weather(city: str) -> dict:
         params = {
             "latitude": lat,
             "longitude": lon,
-            "current_weather": True,
             "current": "temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code",
         }
         weather_resp = requests.get(weather_url, params=params, timeout=10)

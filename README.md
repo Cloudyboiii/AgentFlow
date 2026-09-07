@@ -1,4 +1,4 @@
-# AgentFlow Nebula 🌌
+# AgentFlow 🌌
 
 AgentFlow is a premium, AI-powered conversational agent interface built with modern web technologies. It features a completely custom **Nebula Theme**, delivering a futuristic, glassmorphic visual identity alongside a powerful Python/FastAPI backend capable of complex reasoning and tool execution via Google's Gemini models.
 
@@ -6,7 +6,7 @@ AgentFlow is a premium, AI-powered conversational agent interface built with mod
 
 * **Multi-Chat Session Management**: Seamlessly manage multiple conversations. Sessions are automatically saved to local storage, allowing you to pick up right where you left off.
 * **Agentic Tool Calling**: The backend AI isn't just a chatbot; it has access to tools (like web searching) and will dynamically decide when to use them to fulfill user requests.
-* **The Nebula UI**: A breathtaking, deep space-inspired interface with electric cyan and neon violet accents, complete with ambient background animations and smooth glassmorphism.
+* **The UI**: A breathtaking, deep space-inspired interface with electric cyan and neon violet accents, complete with ambient background animations and smooth glassmorphism.
 * **Real-time Reasoning Panel**: Watch the AI work! Tool executions and latency metrics are rendered inline within the chat stream.
 
 ## 🛠️ Technology Stack
@@ -21,7 +21,7 @@ AgentFlow is a premium, AI-powered conversational agent interface built with mod
 **Backend**
 * Framework: FastAPI (Python)
 * AI SDK: Google Generative AI (`google-genai`)
-* Model: Gemini 1.5 Flash / Pro
+* Model: gemini-3.6-flash
 * Utilities: DuckDuckGo Search, BeautifulSoup4
 
 ## 🚀 Quick Start (Local Development)
